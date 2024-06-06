@@ -1,13 +1,28 @@
 body {
     background-color: #000;
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     text-align: center;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .container {
@@ -15,12 +30,23 @@ body {
     padding: 20px;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 20px #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    width: 90%;
+    max-width: 800px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
 }
 
 h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 p {
@@ -31,6 +57,7 @@ p {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .category {
@@ -39,12 +66,15 @@ p {
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    margin: 0 10px; /* Добавляем горизонтальные отступы между категориями */
+    margin: 10px;
+    flex: 1 1 calc(33% - 20px);
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .category:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 15px #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 .category h2 {
@@ -52,22 +82,45 @@ p {
 }
 
 .category img {
-    width: 200px;
+    width: 100%;
     height: auto;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .button {
-    background-color: #fff;
-    color: #000;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
     padding: 10px 20px;
     text-decoration: none;
     font-size: 1.2em;
     border-radius: 10px;
     transition: background-color 0.3s, box-shadow 0.3s;
+    border: 2px solid #fff;
 }
 
 .button:hover {
-    background-color: #ccc;
-    box-shadow: 0 0 10px #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Медиа-запросы для адаптации под мобильные устройства */
+@media (max-width: 768px) {
+    .categories {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category {
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+    }
 }
